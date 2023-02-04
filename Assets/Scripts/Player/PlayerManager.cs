@@ -8,7 +8,10 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject player1, player2;
 
-    private void Awake(){
+    public Transform spawnPosition1, spawnPosition2;
+
+    private void Awake()
+    {
         if (_instance == null) _instance = this;
         else Destroy(this);
     }
