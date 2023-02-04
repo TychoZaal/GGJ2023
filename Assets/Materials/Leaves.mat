@@ -50,7 +50,7 @@ Material:
     - _WindScale: 1
     - _WindScroll: 3.57
     - _WindSpeed: 0.5
-    - _WindStrength: 1
+    - _WindStrength: 2
     - _WindVerticality: 1.72
     m_Colors:
     - _Color: {r: 0.59567106, g: 0.8679245, b: 0.56824493, a: 0}
