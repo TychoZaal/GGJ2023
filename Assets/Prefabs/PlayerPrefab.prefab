@@ -262,8 +262,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3414b75a89495f40aba7f02428057d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumpIntensity: 10
-  radius: 2
+  bumpIntensity: 125
+  bounceDuration: 0.4
+  rb: {fileID: 3451433857932907153}
+  playerMovement: {fileID: 7470314199692233147}
 --- !u!1 &6836348818460691008
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,5 +414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3414b75a89495f40aba7f02428057d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumpIntensity: 10
-  radius: 2
+  bumpIntensity: 125
+  bounceDuration: 0.4
+  rb: {fileID: 1843725510680875036}
+  playerMovement: {fileID: 7470314199692233147}

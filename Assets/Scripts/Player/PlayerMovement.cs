@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movementInput;
 
+    public enum State { MOVING, IDLE, STUNNED };
+    private State playerState = State.IDLE;
+
     private void Start()
     {
         var detPlayer = GetComponent<DeterminePlayer>();
@@ -20,7 +23,25 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        var moveDirection = rb.transform.forward * movementInput.y + rb.transform.right * movementInput.x;
+        MovePlayer();
+    }
+
+    public void ChangePlayerState(State newState)
+    {
+        this.playerState = newState;
+    }
+
+    public void ResetPlayerState()
+    {
+        this.playerState = State.IDLE;
+    }
+
+    private void MovePlayer()
+    {
+        if (playerState == State.STUNNED) return;
+        if (playerState == State.IDLE) ChangePlayerState(State.MOVING);
+
+        Vector3 moveDirection = rb.transform.forward * movementInput.y + rb.transform.right * movementInput.x;
         moveDirection = moveDirection * speed;
 
         Vector2 speedDiff = new Vector2(moveDirection.x - rb.velocity.x, moveDirection.z - rb.velocity.z);

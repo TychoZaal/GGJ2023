@@ -5,21 +5,24 @@ using UnityEngine;
 public class CollideWithPlayer : MonoBehaviour
 {
     [SerializeField]
-    private float bumpIntensity = 1.0f, radius = 1.0f;
+    private float bumpIntensity = 1.0f;
 
+    [SerializeField]
+    private float bounceDuration = 1.0f;
+
+    [SerializeField]
     private Rigidbody rb;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>(); 
-    }
+    [SerializeField]
+    private PlayerMovement playerMovement;
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
         {
-            rb.AddExplosionForce(bumpIntensity, collision.contacts[0].point, radius); 
+            playerMovement.ChangePlayerState(PlayerMovement.State.STUNNED);
+            playerMovement.Invoke("ResetPlayerState", bounceDuration);
+            rb.AddForce(collision.contacts[0].normal * bumpIntensity);
         }
     }
 }
