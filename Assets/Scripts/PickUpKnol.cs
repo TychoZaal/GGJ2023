@@ -9,6 +9,8 @@ public class PickUpKnol : MonoBehaviour
     [SerializeField] GameObject bosuiHands;
     [SerializeField] GameObject emptyHands;
 
+    [SerializeField] GameObject playerModel;
+
     private PlayerController playerController;
 
     GameObject currentActiveHands;
@@ -32,20 +34,6 @@ public class PickUpKnol : MonoBehaviour
         {
             currentlyCollidedObjects.Add(other);
         }
-        //switch (other.tag)
-        //{
-        //    case "Radijsje":
-        //        ActivateHands(radijsHands);
-        //        break;
-        //    case "Wortel":
-        //        ActivateHands(wortelHands);
-        //        break;
-        //    case "Bosui":
-        //        ActivateHands(bosuiHands);
-        //        break;
-        //    default:
-        //        break;
-        //}
     }
 
     private void OnTriggerExit(Collider other)
@@ -63,9 +51,9 @@ public class PickUpKnol : MonoBehaviour
         //Debug.Log("PICKUP() CALLED");
         if (isHoldingKnol)
         {
-            Vector3 spawnPos = transform.position + transform.forward * 1.2f;
-            KnolSpawner.Instance.SpawnKnol(currentKnolType, spawnPos);
             isHoldingKnol = false;
+            Vector3 spawnPos = transform.position + playerModel.transform.forward * 1.2f;
+            KnolSpawner.Instance.SpawnKnol(currentKnolType, spawnPos);
             ActivateHands(emptyHands);
         }
         else
@@ -78,16 +66,19 @@ public class PickUpKnol : MonoBehaviour
                 switch (pickupCol.tag)
                 {
                     case "Radijsje":
+                        isHoldingKnol = true;
                         ActivateHands(radijsHands);
                         currentKnolType = KNOLTYPE.radijsje;
                         Destroy(pickupCol.gameObject);
                         break;
                     case "Wortel":
+                        isHoldingKnol = true;
                         ActivateHands(wortelHands);
                         currentKnolType = KNOLTYPE.wortel;
                         Destroy(pickupCol.gameObject);
                         break;
                     case "Bosui":
+                        isHoldingKnol = true;
                         ActivateHands(bosuiHands);
                         currentKnolType = KNOLTYPE.bosui;
                         Destroy(pickupCol.gameObject);
@@ -95,6 +86,7 @@ public class PickUpKnol : MonoBehaviour
                     default:
                         break;
                 }
+
 
             }
         }
@@ -106,6 +98,5 @@ public class PickUpKnol : MonoBehaviour
         currentActiveHands?.SetActive(false);
         newHands.SetActive(true);
         currentActiveHands = newHands;
-        isHoldingKnol = true;
     }
 }
