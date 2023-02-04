@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     public enum State { MOVING, IDLE, STUNNED, WAITING };
     [SerializeField]
-    private State playerState = State.WAITING;
+    public State playerState = State.WAITING;
 
     private Vector3 waitPosition;
 

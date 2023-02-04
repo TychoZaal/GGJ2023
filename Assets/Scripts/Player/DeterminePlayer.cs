@@ -25,8 +25,6 @@ public class DeterminePlayer : MonoBehaviour
         }
 
         else Destroy(gameObject);
-
-        Selection.activeGameObject = model1.gameObject;
     }
 
     public Transform GetModel()
