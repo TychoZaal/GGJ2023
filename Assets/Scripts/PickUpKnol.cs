@@ -59,7 +59,7 @@ public class PickUpKnol : MonoBehaviour
     {
         //if(context.phase == InputActionPhase.Performed)
         //{
-        Debug.Log("PICKUP() CALLED");
+        //Debug.Log("PICKUP() CALLED");
         if (isHoldingKnol)
         {
             Vector3 spawnPos = transform.position + transform.forward * 1.2f;

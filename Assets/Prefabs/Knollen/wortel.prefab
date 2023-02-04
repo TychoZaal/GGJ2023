@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5989620604258907865}
   - component: {fileID: 5989620604258907862}
   - component: {fileID: 5989620604258907866}
+  - component: {fileID: -2151907975095004949}
   m_Layer: 0
   m_Name: wortel
   m_TagString: Wortel
@@ -120,7 +121,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6bb4ff6838c884e9085873b0c59186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dest: {fileID: 0}
-  player: {fileID: 0}
-  jumpheight: 3
-  jumpSpeed: 0.9
+--- !u!114 &-2151907975095004949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5989620604258907863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ffbeb91c5bc3f04385bc347fe4d6852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

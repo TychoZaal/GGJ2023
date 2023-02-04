@@ -23,8 +23,8 @@ public class KnolWalkingBehavior : MonoBehaviour
         float minZ = walkableArea.transform.position.z - (r.bounds.size.z / 2f);
         float maxZ = walkableArea.transform.position.z + (r.bounds.size.z / 2f);
 
-        Debug.Log("radius- " + navMeshAgent.radius);
-        Debug.Log("minX" + minX + "maxX" + maxX + "minZ" + minZ + "maxZ" + maxZ);
+        //Debug.Log("radius- " + navMeshAgent.radius);
+        //Debug.Log("minX" + minX + "maxX" + maxX + "minZ" + minZ + "maxZ" + maxZ);
 
         boundsX = new Vector2Range(minX, maxX);
         boundsZ = new Vector2Range(minZ, maxZ);
