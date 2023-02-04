@@ -14,17 +14,17 @@ public class Moestuintje : MonoBehaviour
         col = GetComponent<Collider>();
     }
 
-    void OnEnable()
-    {
-        KnolSpawner.OnPutDown += CheckOverlap;
-    }
+    //void OnEnable()
+    //{
+    //    KnolSpawner.OnPutDown += CheckOverlap;
+    //}
 
-    void OnDisable()
-    {
-        KnolSpawner.OnPutDown -= CheckOverlap;
-    }
+    //void OnDisable()
+    //{
+    //    KnolSpawner.OnPutDown -= CheckOverlap;
+    //}
 
-    private void CheckOverlap(Vector3 pos)
+    public bool CheckOverlap(Vector3 pos)
     {
         Vector3 checkPos = new Vector3(pos.x, transform.position.y, pos.z);
 
@@ -32,6 +32,13 @@ public class Moestuintje : MonoBehaviour
         {
             Debug.Log("Plant die zaadje in de moestuin");
             ScoreManager.Instance.AddScore(1, playerclass);
+                return true;
+          //  KnolSpawner.Instance.CreateKnolInstance(knolType, pos, false);
+        }
+        else
+        {
+            return false;
+           // KnolSpawner.Instance.CreateKnolInstance(knolType, pos, false);
         }
     }
 }

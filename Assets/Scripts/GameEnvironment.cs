@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameEnvironment : MonoBehaviour
 {
     [SerializeField] public GameObject ground;
+    [SerializeField] public List<Moestuintje> moestuintjes = new List<Moestuintje>();
 
     public static GameEnvironment Instance { get; private set; }
 
