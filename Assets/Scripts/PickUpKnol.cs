@@ -7,6 +7,7 @@ public class PickUpKnol : MonoBehaviour
     [SerializeField] GameObject wortelHands;
     [SerializeField] GameObject radijsHands;
     [SerializeField] GameObject bosuiHands;
+    [SerializeField] GameObject emptyHands;
 
     private PlayerController playerController;
 
@@ -65,6 +66,7 @@ public class PickUpKnol : MonoBehaviour
             Vector3 spawnPos = transform.position + transform.forward * 1.2f;
             KnolSpawner.Instance.SpawnKnol(currentKnolType, spawnPos);
             isHoldingKnol = false;
+            ActivateHands(emptyHands);
         }
         else
         {
