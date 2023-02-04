@@ -30,7 +30,7 @@ public class KnolWalkingBehavior : MonoBehaviour
         boundsX = new Vector2Range(minX, maxX);
         boundsZ = new Vector2Range(minZ, maxZ);
 
-        movePositionTransform.position = new Vector3(maxX, 0f, maxZ);
+      //  movePositionTransform.position = new Vector3(maxX, 0f, maxZ);
 
         dest = RandomDestination();
     }
