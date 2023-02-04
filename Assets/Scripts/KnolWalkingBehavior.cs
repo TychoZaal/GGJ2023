@@ -5,8 +5,6 @@ public class KnolWalkingBehavior : MonoBehaviour
 {
     [SerializeField] private Transform movePositionTransform;
 
-    [SerializeField] private GameObject walkArea;
-
     private Vector2Range boundsX = default;
     private Vector2Range boundsZ = default;
 
@@ -18,11 +16,12 @@ public class KnolWalkingBehavior : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
 
-        Renderer r = walkArea.GetComponent<Renderer>();
-        float minX = walkArea.transform.position.x - (r.bounds.size.x / 2f);
-        float maxX = walkArea.transform.position.x + (r.bounds.size.x / 2f);
-        float minZ = walkArea.transform.position.z - (r.bounds.size.z / 2f);
-        float maxZ = walkArea.transform.position.z + (r.bounds.size.z / 2f);
+        GameObject walkableArea = GameEnvironment.Instance.ground;
+        Renderer r = walkableArea.GetComponent<Renderer>();
+        float minX = walkableArea.transform.position.x - (r.bounds.size.x / 2f);
+        float maxX = walkableArea.transform.position.x + (r.bounds.size.x / 2f);
+        float minZ = walkableArea.transform.position.z - (r.bounds.size.z / 2f);
+        float maxZ = walkableArea.transform.position.z + (r.bounds.size.z / 2f);
 
         Debug.Log("radius- " + navMeshAgent.radius);
         Debug.Log("minX" + minX + "maxX" + maxX + "minZ" + minZ + "maxZ" + maxZ);
