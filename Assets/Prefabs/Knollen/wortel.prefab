@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5989620604258907865}
   - component: {fileID: 5989620604258907862}
   - component: {fileID: 5989620604258907866}
-  - component: {fileID: 35234362571580559}
   m_Layer: 0
   m_Name: wortel
   m_TagString: Wortel
@@ -34,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5989620604258907864
 MeshFilter:
@@ -125,16 +124,3 @@ MonoBehaviour:
   player: {fileID: 0}
   jumpheight: 3
   jumpSpeed: 0.9
---- !u!114 &35234362571580559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5989620604258907863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 329ad8203c37fc840af109dd6c9ccc63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knolType: 2

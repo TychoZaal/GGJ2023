@@ -11,6 +11,9 @@ public class PickUpKnol : MonoBehaviour
 
     List<Collider> currentlyCollidedObjects = new List<Collider>();
 
+    private bool isHoldingKnol = false;
+    KNOLTYPE currentKnolType = default;
+
     private void OnTriggerEnter(Collider other)
     {
         currentlyCollidedObjects.Add(other);
@@ -37,23 +40,40 @@ public class PickUpKnol : MonoBehaviour
 
     public void PickUp()
     {
-        if (currentlyCollidedObjects == null || currentlyCollidedObjects.Count == 0) return;
+        if (isHoldingKnol)
+        {
+            Vector3 spawnPos = transform.position + transform.forward * 4f;
+            KnolSpawner.Instance.SpawnKnol(currentKnolType, spawnPos);
+            isHoldingKnol = false;
+        }
         else
         {
-                switch (currentlyCollidedObjects[0].tag)
+            if (currentlyCollidedObjects == null || currentlyCollidedObjects.Count == 0) return;
+            else
+            {
+                Collider pickupCol = currentlyCollidedObjects[0];
+                currentlyCollidedObjects.Remove(pickupCol);
+                switch (pickupCol.tag)
                 {
                     case "Radijsje":
                         ActivateHands(radijsHands);
+                        currentKnolType = KNOLTYPE.radijsje;
+                        Destroy(pickupCol.gameObject);
                         break;
                     case "Wortel":
                         ActivateHands(wortelHands);
+                        currentKnolType = KNOLTYPE.wortel;
+                        Destroy(pickupCol.gameObject);
                         break;
                     case "Bosui":
                         ActivateHands(bosuiHands);
+                        currentKnolType = KNOLTYPE.bosui;
+                        Destroy(pickupCol.gameObject);
                         break;
                     default:
                         break;
                 }
+            } 
         }
     }
 
@@ -62,5 +82,6 @@ public class PickUpKnol : MonoBehaviour
         currentActiveHands?.SetActive(false);
         newHands.SetActive(true);
         currentActiveHands = newHands;
+        isHoldingKnol = true;
     }
 }
