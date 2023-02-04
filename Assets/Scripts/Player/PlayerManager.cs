@@ -10,9 +10,18 @@ public class PlayerManager : MonoBehaviour
 
     public Transform spawnPosition1, spawnPosition2;
 
+    int playersSpawned = 0;
+
     private void Awake()
     {
         if (_instance == null) _instance = this;
         else Destroy(this);
+    }
+
+    public Transform GetSpawnPosition()
+    {
+        var pos = playersSpawned == 0 ? spawnPosition1 : spawnPosition2;
+        playersSpawned++;
+        return pos;
     }
 }

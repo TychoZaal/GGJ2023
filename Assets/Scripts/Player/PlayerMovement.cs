@@ -19,11 +19,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private State playerState = State.WAITING;
 
+    private Vector3 waitPosition;
+
     private void Start()
     {
         var detPlayer = GetComponent<DeterminePlayer>();
         rb = detPlayer.player1.activeInHierarchy ? detPlayer.player1.GetComponent<Rigidbody>() : detPlayer.player2.GetComponent<Rigidbody>();
         model = detPlayer.GetModel();
+        waitPosition = PlayerManager._instance.GetSpawnPosition().position;
+
+        Vector3 lookAtPosition = transform.position + Vector3.one;
+        lookAtPosition.y -= 1;
+        rb.transform.LookAt(lookAtPosition);
+
         Invoke("ResetPlayerState", 3.0f);
     }
 
@@ -40,11 +48,22 @@ public class PlayerMovement : MonoBehaviour
     public void ResetPlayerState()
     {
         this.playerState = State.IDLE;
+        rb.isKinematic = false;
     }
 
     private void MovePlayer()
     {
-        if (playerState == State.STUNNED || playerState == State.WAITING) return;
+        if (playerState == State.STUNNED) return;
+        if (playerState == State.WAITING)
+        {
+            rb.transform.position = waitPosition;
+            rb.velocity = Vector3.zero;
+            rb.isKinematic = true;
+            model.LookAt(model.position + new Vector3(movementInput.x, 0, movementInput.y));
+
+            return;
+        }
+
         if (playerState == State.IDLE) ChangePlayerState(State.MOVING);
 
         Vector3 moveDirection = rb.transform.forward * movementInput.y + rb.transform.right * movementInput.x;

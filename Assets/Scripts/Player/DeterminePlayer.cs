@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class DeterminePlayer : MonoBehaviour
@@ -14,7 +15,6 @@ public class DeterminePlayer : MonoBehaviour
             player2.SetActive(false);
             PlayerManager._instance.player1 = gameObject;
             player1.transform.position = PlayerManager._instance.spawnPosition1.position;
-            model1.LookAt(Camera.main.transform.position);   
         }
 
         else if (PlayerManager._instance.player2 == null){
@@ -22,10 +22,11 @@ public class DeterminePlayer : MonoBehaviour
             player2.SetActive(true);
             PlayerManager._instance.player2 = gameObject;
             player2.transform.position = PlayerManager._instance.spawnPosition2.position;
-            model2.LookAt(Camera.main.transform.position);
         }
 
         else Destroy(gameObject);
+
+        Selection.activeGameObject = model1.gameObject;
     }
 
     public Transform GetModel()
