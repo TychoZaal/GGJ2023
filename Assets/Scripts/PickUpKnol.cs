@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PickUpKnol : MonoBehaviour
 {
     [SerializeField] GameObject wortelHands;
     [SerializeField] GameObject radijsHands;
     [SerializeField] GameObject bosuiHands;
+
+    private PlayerController playerController;
 
     GameObject currentActiveHands;
 
@@ -14,9 +17,20 @@ public class PickUpKnol : MonoBehaviour
     private bool isHoldingKnol = false;
     KNOLTYPE currentKnolType = default;
 
+    private void Awake()
+    {
+        playerController = new PlayerController();
+        playerController.Player.Enable();
+
+        playerController.Player.Interact.performed += PickUp;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        currentlyCollidedObjects.Add(other);
+        if (!currentlyCollidedObjects.Contains(other))
+        {
+            currentlyCollidedObjects.Add(other);
+        }
         //switch (other.tag)
         //{
         //    case "Radijsje":
@@ -35,24 +49,30 @@ public class PickUpKnol : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        currentlyCollidedObjects.Remove(other);
+        if (currentlyCollidedObjects.Contains(other))
+        {
+            currentlyCollidedObjects.Remove(other);
+        }
     }
 
-    public void PickUp()
+    public void PickUp(InputAction.CallbackContext context)
     {
+        //if(context.phase == InputActionPhase.Performed)
+        //{
+        Debug.Log("PICKUP() CALLED");
         if (isHoldingKnol)
         {
-            Vector3 spawnPos = transform.position + transform.forward * 4f;
+            Vector3 spawnPos = transform.position + transform.forward * 1.2f;
             KnolSpawner.Instance.SpawnKnol(currentKnolType, spawnPos);
             isHoldingKnol = false;
         }
         else
         {
-            if (currentlyCollidedObjects == null || currentlyCollidedObjects.Count == 0) return;
+            if (currentlyCollidedObjects == null || currentlyCollidedObjects.Count <= 0) return;
             else
             {
                 Collider pickupCol = currentlyCollidedObjects[0];
-                currentlyCollidedObjects.Remove(pickupCol);
+                currentlyCollidedObjects.RemoveAt(0);
                 switch (pickupCol.tag)
                 {
                     case "Radijsje":
@@ -73,8 +93,10 @@ public class PickUpKnol : MonoBehaviour
                     default:
                         break;
                 }
-            } 
+
+            }
         }
+        //}
     }
 
     private void ActivateHands(GameObject newHands)

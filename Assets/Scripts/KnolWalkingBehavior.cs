@@ -12,7 +12,7 @@ public class KnolWalkingBehavior : MonoBehaviour
 
     private Vector3 dest;
 
-    void Awake()
+    void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
 
