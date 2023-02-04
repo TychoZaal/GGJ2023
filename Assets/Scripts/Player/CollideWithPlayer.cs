@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollideWithPlayer : MonoBehaviour
 {
     [SerializeField]
-    private float dumpIntensity = 1.0f;
+    private float bumpIntensity = 1.0f, radius = 1.0f;
 
     private Rigidbody rb;
 
@@ -15,18 +15,11 @@ public class CollideWithPlayer : MonoBehaviour
         rb = GetComponent<Rigidbody>(); 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
         {
-            Rigidbody otherPlayer = collision.gameObject.GetComponent<Rigidbody>();
-            // otherPlayer.AddExplosionForce(dumpIntensity);
+            rb.AddExplosionForce(bumpIntensity, collision.contacts[0].point, radius); 
         }
     }
 }

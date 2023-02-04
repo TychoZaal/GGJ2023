@@ -8,11 +8,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float speed = 5;
 
+    private Rigidbody rb;
+
     private Vector2 movementInput;
 
-    void Update()
+    private void Start()
     {
-        transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
+        var detPlayer = GetComponent<DeterminePlayer>();
+        rb = detPlayer.player1.activeInHierarchy ? detPlayer.player1.GetComponent<Rigidbody>() : detPlayer.player2.GetComponent<Rigidbody>();
+    }
+
+    void FixedUpdate()
+    {
+        var moveDirection = rb.transform.forward * movementInput.y + rb.transform.right * movementInput.x;
+        rb.AddForce(moveDirection.normalized * speed, ForceMode.Acceleration);
     }
 
     public void OnMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
