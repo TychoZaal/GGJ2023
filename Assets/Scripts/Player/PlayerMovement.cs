@@ -35,7 +35,9 @@ public class PlayerMovement : MonoBehaviour
         lookAtPosition.y -= 1;
         rb.transform.LookAt(lookAtPosition);
 
-        StartCoroutine(ToggleImage(joystick, 0.0f, 3.0f));
+        StartCoroutine(ToggleImage(joystick, 0.0f, 5.0f));
+        StartCoroutine(ToggleImage(square, 5.0f, 5.0f));
+
         Invoke("ResetPlayerState", 0.5f);
     }
 
@@ -44,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 originalScale = transformObj.localScale;
         yield return new WaitForSeconds(waitTime);
 
-        transformObj.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        transformObj.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
         yield return new WaitForSeconds(uptime);
 
