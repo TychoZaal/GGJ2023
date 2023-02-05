@@ -35,8 +35,8 @@ public class CarrotGrid : MonoBehaviour
     {
         GameObject walkableArea = GameEnvironment.Instance.ground;
         Renderer r = walkableArea.GetComponent<Renderer>();
-        float width = r.bounds.size.z;
-        float height = r.bounds.size.x;
+        float width = r.bounds.size.z - 4f;
+        float height = r.bounds.size.x - 4f;
 
         posy = walkableArea.transform.position.y;
 
