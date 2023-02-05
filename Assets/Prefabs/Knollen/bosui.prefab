@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1731553541486987771}
   - component: {fileID: 6360230410589686951}
   - component: {fileID: -613963234048856319}
+  - component: {fileID: 2159362056881759566}
   m_Layer: 0
   m_Name: bosui
   m_TagString: Bosui
@@ -188,6 +189,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ffbeb91c5bc3f04385bc347fe4d6852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2159362056881759566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731553541486987773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06fa83fe4fc7b694faf72c5e020f5bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1731553541515792946
