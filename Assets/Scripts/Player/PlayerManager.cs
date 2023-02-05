@@ -24,4 +24,9 @@ public class PlayerManager : MonoBehaviour
         playersSpawned++;
         return pos;
     }
+
+    public bool isPlayerOne()
+    {
+        return playersSpawned == 1;
+    }
 }
