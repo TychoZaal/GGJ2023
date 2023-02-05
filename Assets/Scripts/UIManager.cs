@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
 
     public void SetWaveText(int waveNumber)
     {
-        waveText.text = "Preparing for wave " + waveNumber.ToString();
+        waveText.text = "Oh no! More veggies are escaping...";
         waveText.gameObject.SetActive(true);
     }
 

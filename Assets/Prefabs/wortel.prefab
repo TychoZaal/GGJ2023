@@ -55,10 +55,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.62
+  m_Radius: 1.130519
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: -0.19}
 --- !u!114 &5989620604258907866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,9 +73,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minJumpheight: 4
   maxJumpheight: 6
-  jumpSpeed: 1.2
-  minJumpWaitTime: 2
-  maxJumpWaitTime: 5
+  jumpSpeed: 0.7
+  minJumpWaitTime: 1
+  maxJumpWaitTime: 3
   wortelHeightOffset: 0.4
   wortelCollider: {fileID: 0}
   wortelHeight: 0

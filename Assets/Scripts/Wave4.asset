@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36fed010321cfb4aa523c5500c07af0, type: 3}
   m_Name: Wave4
   m_EditorClassIdentifier: 
-  bosuiAmount: 5
-  wortelAmount: 5
-  radijsAmount: 5
+  bosuiAmount: 2
+  wortelAmount: 4
+  radijsAmount: 6
