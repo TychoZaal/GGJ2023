@@ -26,4 +26,9 @@ public class PlayerManager : MonoBehaviour
         if (playersSpawned == 1) WaveManager.Instance.GoToNextWave();
         return pos;
     }
+
+    public bool isPlayerOne()
+    {
+        return playersSpawned == 1;
+    }
 }
