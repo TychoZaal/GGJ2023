@@ -54,6 +54,13 @@ public class WaveManager : MonoBehaviour
     public void GoToNextWave()
     {
         currentWave++;
+
+        if (currentWave >= 4)
+        {
+            UIManager.Instance.FinalizeGame();
+            return;
+        }
+
         UIManager.Instance.SetWaveText(currentWave + 1);
         Invoke("SpawnAllKnollen", 3f);
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -32,10 +33,27 @@ public class UIManager : MonoBehaviour
     public void SetWaveText(int waveNumber)
     {
         waveText.text = "Oh no! More veggies are escaping...";
+
+        if (waveNumber <= 1)
+            waveText.text = "Oh oh! The veggies are escaping...";
+
         waveText.gameObject.SetActive(true);
     }
 
-    public void DisableWaveText()
+    public void FinalizeGame()
+    {
+        string winner = ScoreManager.Instance.scoreTomato > ScoreManager.Instance.scoreCucumber ? "Red" : "Blue";
+        waveText.text = "Player " + winner + " won!";
+        waveText.gameObject.SetActive(true);
+        Invoke("ResetScene", 10.0f);
+    }
+
+    private void ResetScene()
+    {
+        SceneManager.LoadScene("Lisa");
+    }
+
+        public void DisableWaveText()
     {
         waveText.gameObject.SetActive(false);
     }
