@@ -92,6 +92,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d7d97e50-2832-489c-a871-9972eaa753ee
     m_ActionName: Player/Interact[/DualShock4GamepadHID/buttonWest,/DualShock4GamepadHID1/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d91caee4-c509-4f75-8d47-7b621cf4c239
+    m_ActionName: Player/Skip[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

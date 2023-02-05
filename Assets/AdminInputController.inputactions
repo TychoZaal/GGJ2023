@@ -1,0 +1,34 @@
+{
+    "name": "AdminInputController",
+    "maps": [
+        {
+            "name": "Admin",
+            "id": "54b17468-ed9a-48ec-9947-27538eed481e",
+            "actions": [
+                {
+                    "name": "Skip",
+                    "type": "Button",
+                    "id": "a45eb8b7-d31a-41c7-b86f-ad909da246fd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8e174985-bcc6-44e3-8354-1a7f51985315",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

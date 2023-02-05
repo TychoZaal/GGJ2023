@@ -44,9 +44,6 @@ public class CarrotGrid : MonoBehaviour
 
         CreateGrid(width, height);
 
-        KnolSpawner.Instance.SpawnWortel();
-
-
     }
 
     private bool CheckObstacleOverlap(Vector3 pos)

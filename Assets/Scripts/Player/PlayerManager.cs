@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
 
     public Transform spawnPosition1, spawnPosition2;
 
-    int playersSpawned = 0;
+    public int playersSpawned = 0;
 
     private void Awake()
     {
@@ -22,6 +22,8 @@ public class PlayerManager : MonoBehaviour
     {
         var pos = playersSpawned == 0 ? spawnPosition1 : spawnPosition2;
         playersSpawned++;
+
+        if (playersSpawned == 1) WaveManager.Instance.GoToNextWave();
         return pos;
     }
 }

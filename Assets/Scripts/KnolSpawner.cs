@@ -12,9 +12,6 @@ public class KnolSpawner : MonoBehaviour
     [SerializeField] GameObject wortelPrefabPlanted;
     [SerializeField] GameObject bosuiPrefabPlanted;
 
-    [SerializeField] int wortelSpawnCount = 5;
-
-
     public delegate void PutDownAction(KNOLTYPE knolType, Vector3 pos);
     public static event PutDownAction OnPutDown;
 
@@ -38,8 +35,6 @@ public class KnolSpawner : MonoBehaviour
 
     public void SpawnWortel()
     {
-        for (int i = 0; i < wortelSpawnCount; i++)
-        {
             int f = 0;
 
             while (f < 100)
@@ -50,7 +45,7 @@ public class KnolSpawner : MonoBehaviour
                 if (CarrotGrid.Instance.carrotPoints[c, r].availability)
                 {
                     Debug.Log("instantiate carrot");
-                    GameObject w = Instantiate(wortelPrefab, CarrotGrid.Instance.carrotPoints[c, r].pos, default, null);
+                    GameObject w = Instantiate(wortelPrefab, CarrotGrid.Instance.carrotPoints[c, r].pos, default, GameEnvironment.Instance.knollenParent.transform);
                     WortelJumpingBehavior wjb = w.GetComponent<WortelJumpingBehavior>();
 
                     wjb.currentColumn = c;
@@ -61,9 +56,16 @@ public class KnolSpawner : MonoBehaviour
                 }
                 f++;
             }
+    }
 
-        }
+    public void SpawnBosui()
+    {
+        Instantiate(bosuiPrefab, default, default, GameEnvironment.Instance.knollenParent.transform);
+    }
 
+    public void SpawnRadijs()
+    {
+        Instantiate(radijsPrefab, default, default, GameEnvironment.Instance.knollenParent.transform);
     }
 
     public void SpawnKnol(KNOLTYPE knolType, Vector3 spawnPos, bool fallingFromHands = false, Quaternion spawnRot = default)
@@ -81,6 +83,7 @@ public class KnolSpawner : MonoBehaviour
                 if (isPlanting)
                 {
                     CreateKnolInstance(knolType, spawnPos, true);
+                    WaveManager.Instance.PutKnolDown();
                     return;
                 }
             }
@@ -128,31 +131,31 @@ public class KnolSpawner : MonoBehaviour
             case KNOLTYPE.radijsje:
                 if (isBeingPlanted)
                 {
-                    Instantiate(radijsPrefabPlanted, pos, default, null);
+                    Instantiate(radijsPrefabPlanted, pos, default, GameEnvironment.Instance.knollenParent.transform);
                 }
                 else
                 {
-                    Instantiate(radijsPrefab, pos, default, null);
+                    Instantiate(radijsPrefab, pos, default, GameEnvironment.Instance.knollenParent.transform);
                 }
                 break;
             case KNOLTYPE.wortel:
                 if (isBeingPlanted)
                 {
-                    Instantiate(wortelPrefabPlanted, pos, default, null);
+                    Instantiate(wortelPrefabPlanted, pos, default, GameEnvironment.Instance.knollenParent.transform);
                 }
                 else
                 {
-                    Instantiate(wortelPrefab, pos, default, null);
+                    Instantiate(wortelPrefab, pos, default, GameEnvironment.Instance.knollenParent.transform);
                 }
                 break;
             case KNOLTYPE.bosui:
                 if (isBeingPlanted)
                 {
-                    Instantiate(bosuiPrefabPlanted, pos, default, null);
+                    Instantiate(bosuiPrefabPlanted, pos, default, GameEnvironment.Instance.knollenParent.transform);
                 }
                 else
                 {
-                    Instantiate(bosuiPrefab, pos, default, null);
+                    Instantiate(bosuiPrefab, pos, default, GameEnvironment.Instance.knollenParent.transform);
                 }
                 break;
             default:
