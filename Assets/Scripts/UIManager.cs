@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text tomatoText;
     [SerializeField] private TMP_Text cucumberText;
+    [SerializeField] private TMP_Text waveText;
 
     public static UIManager Instance { get; private set; }
 
@@ -26,5 +27,16 @@ public class UIManager : MonoBehaviour
     {
         tomatoText.text = tomatoScore.ToString();
         cucumberText.text = cucumberScore.ToString();
+    }
+
+    public void SetWaveText(int waveNumber)
+    {
+        waveText.text = "Preparing for wave " + waveNumber.ToString();
+        waveText.gameObject.SetActive(true);
+    }
+
+    public void DisableWaveText()
+    {
+        waveText.gameObject.SetActive(false);
     }
 }

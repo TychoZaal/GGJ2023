@@ -99,8 +99,6 @@ public class PickUpKnol : MonoBehaviour
                     default:
                         break;
                 }
-
-
             }
         }
         //}
