@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 originalScale = transformObj.localScale;
         yield return new WaitForSeconds(waitTime);
 
-        transformObj.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        transformObj.localScale = new Vector3(0.15f, 0.15f, 0.15f);
 
         yield return new WaitForSeconds(uptime);
 
