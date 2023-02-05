@@ -47,3 +47,6 @@ MonoBehaviour:
   radijsPrefab: {fileID: 8325505105651543432, guid: 42774e35972504544909273d5d784ec9, type: 3}
   wortelPrefab: {fileID: 5989620604258907863, guid: c7ddedfb1e912fc4d85ed8ced378ecf9, type: 3}
   bosuiPrefab: {fileID: 1731553541486987773, guid: 92eea302e398c4c44bddc081e5aa7684, type: 3}
+  radijsPrefabPlanted: {fileID: 1289808853855929932, guid: 9b181df2d29f2a54eada62780ea19f33, type: 3}
+  wortelPrefabPlanted: {fileID: 4510874506887880557, guid: 2192428fbc0fa1848b81155174e0a5a6, type: 3}
+  bosuiPrefabPlanted: {fileID: 8802143596724144389, guid: 721e111a430be1c4c99248514b868da1, type: 3}
