@@ -18,15 +18,18 @@ public class PickUpKnol : MonoBehaviour
     List<Collider> currentlyCollidedObjects = new List<Collider>();
 
     private bool isHoldingKnol = false;
+    private bool isHandlingInput = false;
     KNOLTYPE currentKnolType = default;
+
+    [SerializeField]
+    private PlayerInput playerInput;
 
     private void Awake()
     {
         playerController = new PlayerController();
         playerController.Player.Enable();
-
-        playerController.Player.Interact.performed += PickUp;
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -44,11 +47,21 @@ public class PickUpKnol : MonoBehaviour
         }
     }
 
-    public void PickUp(InputAction.CallbackContext context)
+    private void ResolveInput()
     {
+        isHandlingInput = false;
+    }
+
+    public void PickUp()
+    {
+        if (isHandlingInput) return;
+
         //if(context.phase == InputActionPhase.Performed)
         //{
         //Debug.Log("PICKUP() CALLED");
+        isHandlingInput = true;
+        Invoke("ResolveInput", 0.3f);
+
         if (isHoldingKnol)
         {
             isHoldingKnol = false;
