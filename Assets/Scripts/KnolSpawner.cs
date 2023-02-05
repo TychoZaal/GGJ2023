@@ -12,6 +12,8 @@ public class KnolSpawner : MonoBehaviour
     [SerializeField] GameObject wortelPrefabPlanted;
     [SerializeField] GameObject bosuiPrefabPlanted;
 
+    [SerializeField] int wortelSpawnCount = 5;
+
 
     public delegate void PutDownAction(KNOLTYPE knolType, Vector3 pos);
     public static event PutDownAction OnPutDown;
@@ -30,9 +32,43 @@ public class KnolSpawner : MonoBehaviour
         }
     }
 
-    public void SpawnKnol(KNOLTYPE knolType, Vector3 spawnPos, bool isInitialSpawn = false, Quaternion spawnRot = default)
+    private void Start()
     {
-        if (isInitialSpawn)
+    }
+
+    public void SpawnWortel()
+    {
+        for (int i = 0; i < wortelSpawnCount; i++)
+        {
+            int f = 0;
+
+            while (f < 100)
+            {
+                int c = Random.Range(0, CarrotGrid.Instance.columns - 1);
+                int r = Random.Range(0, CarrotGrid.Instance.rows - 1);
+
+                if (CarrotGrid.Instance.carrotPoints[c, r].availability)
+                {
+                    Debug.Log("instantiate carrot");
+                    GameObject w = Instantiate(wortelPrefab, CarrotGrid.Instance.carrotPoints[c, r].pos, default, null);
+                    WortelJumpingBehavior wjb = w.GetComponent<WortelJumpingBehavior>();
+
+                    wjb.currentColumn = c;
+                    wjb.currentRow = r;
+                    wjb.Jump();
+                    f = 200;
+                    
+                }
+                f++;
+            }
+
+        }
+
+    }
+
+    public void SpawnKnol(KNOLTYPE knolType, Vector3 spawnPos, bool fallingFromHands = false, Quaternion spawnRot = default)
+    {
+        if (fallingFromHands)
         {
             CreateKnolInstance(knolType, spawnPos, false);
         }

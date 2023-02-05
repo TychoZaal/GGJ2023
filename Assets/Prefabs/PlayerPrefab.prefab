@@ -1259,6 +1259,7 @@ MonoBehaviour:
   bounceDuration: 0.4
   rb: {fileID: 3451433857932907153}
   playerMovement: {fileID: 7470314199692233147}
+  pickUpKnol: {fileID: 1061255260685947885}
 --- !u!114 &1061255260685947885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1688,6 +1689,7 @@ MonoBehaviour:
   bounceDuration: 0.4
   rb: {fileID: 1843725510680875036}
   playerMovement: {fileID: 7470314199692233147}
+  pickUpKnol: {fileID: 7899852327855237658}
 --- !u!114 &7899852327855237658
 MonoBehaviour:
   m_ObjectHideFlags: 0

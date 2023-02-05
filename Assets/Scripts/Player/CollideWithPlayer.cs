@@ -16,13 +16,18 @@ public class CollideWithPlayer : MonoBehaviour
     [SerializeField]
     private PlayerMovement playerMovement;
 
+    [SerializeField]
+    private PickUpKnol pickUpKnol;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
         {
             playerMovement.ChangePlayerState(PlayerMovement.State.STUNNED);
             playerMovement.Invoke("ResetPlayerState", bounceDuration);
+            pickUpKnol.Invoke("DropKnol", bounceDuration);
             rb.AddForce(collision.contacts[0].normal * bumpIntensity);
+
         }
     }
 }

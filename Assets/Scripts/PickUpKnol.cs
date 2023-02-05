@@ -86,11 +86,20 @@ public class PickUpKnol : MonoBehaviour
                     default:
                         break;
                 }
-
-
             }
         }
         //}
+    }
+
+    public void DropKnol()
+    {
+        if (isHoldingKnol)
+        {
+            isHoldingKnol = false;
+            Vector3 spawnPos = transform.position + playerModel.transform.forward * 1.2f;
+            KnolSpawner.Instance.SpawnKnol(currentKnolType, spawnPos, true);
+            ActivateHands(emptyHands);
+        }
     }
 
     private void ActivateHands(GameObject newHands)
