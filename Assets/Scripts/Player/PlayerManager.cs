@@ -23,7 +23,8 @@ public class PlayerManager : MonoBehaviour
         var pos = playersSpawned == 0 ? spawnPosition1 : spawnPosition2;
         playersSpawned++;
 
-        if (playersSpawned == 1) WaveManager.Instance.GoToNextWave();
+        if (playersSpawned == 2) StartCoroutine(WaveManager.Instance.GoToNextWave());
+        else if (playersSpawned <= 2) UIManager.Instance.WaitingForPlayer();
         return pos;
     }
 

@@ -51,18 +51,33 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    public void GoToNextWave()
+    public IEnumerator GoToNextWave()
     {
         currentWave++;
 
         if (currentWave >= 4)
         {
             UIManager.Instance.FinalizeGame();
-            return;
+            yield break;
         }
 
+        UIManager.Instance.DisableWaveText();
+        yield return new WaitForSeconds(1.5f);
+
         UIManager.Instance.SetWaveText(currentWave + 1);
-        Invoke("SpawnAllKnollen", 3f);
+
+        yield return new WaitForSeconds(2);
+
+        UIManager.Instance.SetTextToTime("3");
+        yield return new WaitForSeconds(1.0f);
+        UIManager.Instance.SetTextToTime("2");
+        yield return new WaitForSeconds(1.0f);
+        UIManager.Instance.SetTextToTime("1");
+        yield return new WaitForSeconds(1.0f);
+        UIManager.Instance.DisableWaveText();
+        yield return new WaitForSeconds(1.0f);
+
+        SpawnAllKnollen();
     }
 
     public void PutKnolDown()
@@ -71,7 +86,7 @@ public class WaveManager : MonoBehaviour
 
         if(amountOfKnollenLeft <= 0)
         {
-            GoToNextWave();
+            StartCoroutine(GoToNextWave());
         }
     }
 }

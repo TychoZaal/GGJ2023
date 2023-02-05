@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 waitPosition;
 
+    [SerializeField]
+    private Transform square, joystick;
+
     private void Start()
     {
         waitPosition = PlayerManager._instance.GetSpawnPosition().position;
@@ -32,7 +35,20 @@ public class PlayerMovement : MonoBehaviour
         lookAtPosition.y -= 1;
         rb.transform.LookAt(lookAtPosition);
 
-        Invoke("ResetPlayerState", 3.0f);
+        StartCoroutine(ToggleImage(joystick, 0.0f, 3.0f));
+        Invoke("ResetPlayerState", 0.5f);
+    }
+
+    private IEnumerator ToggleImage(Transform transformObj, float waitTime, float uptime)
+    {
+        Vector3 originalScale = transformObj.localScale;
+        yield return new WaitForSeconds(waitTime);
+
+        transformObj.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+
+        yield return new WaitForSeconds(uptime);
+
+        transformObj.localScale = originalScale;
     }
 
     void FixedUpdate()

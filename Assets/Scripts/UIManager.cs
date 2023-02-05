@@ -40,12 +40,24 @@ public class UIManager : MonoBehaviour
         waveText.gameObject.SetActive(true);
     }
 
+    public void SetTextToTime(string text)
+    {
+        waveText.text = text;
+        waveText.gameObject.SetActive(true);
+    }
+
     public void FinalizeGame()
     {
         string winner = ScoreManager.Instance.scoreTomato > ScoreManager.Instance.scoreCucumber ? "Red" : "Blue";
         waveText.text = "Player " + winner + " won!";
         waveText.gameObject.SetActive(true);
         Invoke("ResetScene", 10.0f);
+    }
+
+    public void WaitingForPlayer()
+    {
+        waveText.text = "Waiting for both players...";
+        waveText.gameObject.SetActive(true);
     }
 
     private void ResetScene()
