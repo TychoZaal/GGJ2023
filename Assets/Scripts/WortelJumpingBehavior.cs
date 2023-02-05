@@ -13,6 +13,8 @@ public class WortelJumpingBehavior : MonoBehaviour
 
     [SerializeField] private float wortelHeightOffset = 0.1f;
 
+    [SerializeField] Collider wortelCollider = null;
+
     public float wortelHeight = 0f;
 
     private float t = 0f;
@@ -28,6 +30,7 @@ public class WortelJumpingBehavior : MonoBehaviour
     private void Awake()
     {
         Collider col = GetComponent<Collider>();
+        wortelCollider = col;
         if (GameEnvironment.Instance != null)
         {
             wortelHeight = GameEnvironment.Instance.ground.transform.position.y - col.bounds.size.y / 2f;
@@ -58,6 +61,7 @@ public class WortelJumpingBehavior : MonoBehaviour
             {
                 t = 0f;
                 isJumping = false;
+                wortelCollider.enabled = false;
                 float waitTime = Random.Range(minJumpWaitTime, maxJumpWaitTime);
                 Invoke("Jump", waitTime);
             }
@@ -105,6 +109,7 @@ public class WortelJumpingBehavior : MonoBehaviour
         float jumpheight = Random.Range(minJumpheight, maxJumpheight);
         curveHandle = new Vector3(curveHandle.x, wortelHeight + jumpheight, curveHandle.z);
         isJumping = true;
+        wortelCollider.enabled = true;
     }
 
     Vector3 BezierPos()
