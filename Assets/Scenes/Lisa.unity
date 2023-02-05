@@ -1988,6 +1988,10 @@ PrefabInstance:
       propertyPath: wortelSpawnCount
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 877764221672884584, guid: 071a90b43c07e2f42aa61a384109f65a, type: 3}
+      propertyPath: bosuiPrefabPlanted
+      value: 
+      objectReference: {fileID: 1731553541486987773, guid: 306053286b29f0a4a9a8c8a335d749a9, type: 3}
     - target: {fileID: 877764221672884585, guid: 071a90b43c07e2f42aa61a384109f65a, type: 3}
       propertyPath: m_Name
       value: KnolSpawner (1)
