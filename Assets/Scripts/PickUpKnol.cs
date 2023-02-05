@@ -66,6 +66,7 @@ public class PickUpKnol : MonoBehaviour
         {
             isHoldingKnol = false;
             Vector3 spawnPos = transform.position + playerModel.transform.forward * 1.2f;
+
             KnolSpawner.Instance.SpawnKnol(currentKnolType, spawnPos);
             ActivateHands(emptyHands);
         }

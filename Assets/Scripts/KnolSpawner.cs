@@ -35,27 +35,97 @@ public class KnolSpawner : MonoBehaviour
 
     public void SpawnWortel()
     {
-            int f = 0;
+        int f = 0;
 
-            while (f < 100)
+        while (f < 100)
+        {
+            int c = Random.Range(0, CarrotGrid.Instance.columns - 1);
+            int r = Random.Range(0, CarrotGrid.Instance.rows - 1);
+
+            if (CarrotGrid.Instance.carrotPoints[c, r].availability)
             {
-                int c = Random.Range(0, CarrotGrid.Instance.columns - 1);
-                int r = Random.Range(0, CarrotGrid.Instance.rows - 1);
+                Debug.Log("instantiate carrot");
+                GameObject w = Instantiate(wortelPrefab, CarrotGrid.Instance.carrotPoints[c, r].pos, default, GameEnvironment.Instance.knollenParent.transform);
+                WortelJumpingBehavior wjb = w.GetComponent<WortelJumpingBehavior>();
 
-                if (CarrotGrid.Instance.carrotPoints[c, r].availability)
-                {
-                    Debug.Log("instantiate carrot");
-                    GameObject w = Instantiate(wortelPrefab, CarrotGrid.Instance.carrotPoints[c, r].pos, default, GameEnvironment.Instance.knollenParent.transform);
-                    WortelJumpingBehavior wjb = w.GetComponent<WortelJumpingBehavior>();
+                wjb.currentColumn = c;
+                wjb.currentRow = r;
+                wjb.Jump();
+                f = 200;
 
-                    wjb.currentColumn = c;
-                    wjb.currentRow = r;
-                    wjb.Jump();
-                    f = 200;
-                    
-                }
-                f++;
             }
+            f++;
+        }
+    }
+
+    public void SpawnWortelOpnieuw(Vector3 spawnPos)
+    {
+        float distance = -1f;
+        int c = 0;
+        for (int i = 0; i < CarrotGrid.Instance.columns; i++)
+        {
+            float dis = Vector3.Distance(spawnPos, CarrotGrid.Instance.carrotPoints[i, 0].pos);
+            if (distance < 0 || dis < distance)
+            {
+                distance = dis;
+                c = i;
+            }
+        }
+        distance = -1f;
+        int r = 0;
+        for (int i = 0; i < CarrotGrid.Instance.rows; i++)
+        {
+            float dis = Vector3.Distance(spawnPos, CarrotGrid.Instance.carrotPoints[0, i].pos);
+            if (distance < 0 || dis < distance)
+            {
+                distance = dis;
+                r = i;
+            }
+        }
+        // int c = Random.Range(0, CarrotGrid.Instance.columns - 1);
+        //int r = Random.Range(0, CarrotGrid.Instance.rows - 1);
+
+        if (CarrotGrid.Instance.carrotPoints[c, r].availability)
+        {
+            Debug.Log("instantiate carrot");
+            GameObject w = Instantiate(wortelPrefab, CarrotGrid.Instance.carrotPoints[c, r].pos, default, GameEnvironment.Instance.knollenParent.transform);
+            WortelJumpingBehavior wjb = w.GetComponent<WortelJumpingBehavior>();
+
+            wjb.currentColumn = c;
+            wjb.currentRow = r;
+            wjb.Invoke("Jump", 1f);
+        }
+        else
+        {
+            List<Vector2Int> movePos = new List<Vector2Int>() { new Vector2Int(-1, -1), new Vector2Int(-1, 0), new Vector2Int(-1, 1), new Vector2Int(0, -1), new Vector2Int(0, 1), new Vector2Int(1, -1), new Vector2Int(1, 0), new Vector2Int(1, 1) };
+            foreach(Vector2Int m in movePos)
+            {
+                int cc = c + m.x;
+                int rr = r + m.y;
+
+                if (cc < 0 || rr < 0 || cc >= CarrotGrid.Instance.columns || rr >= CarrotGrid.Instance.rows) continue;
+                if (CarrotGrid.Instance.carrotPoints[cc, rr].availability)
+                {
+                    GameObject ww = Instantiate(wortelPrefab, CarrotGrid.Instance.carrotPoints[cc, rr].pos, default, GameEnvironment.Instance.knollenParent.transform);
+                    CarrotGrid.Instance.carrotPoints[cc, rr].availability = false;
+                    WortelJumpingBehavior wjbb = ww.GetComponent<WortelJumpingBehavior>();
+
+                    wjbb.currentColumn = cc;
+                    wjbb.currentRow = rr;
+                    
+                    wjbb.Invoke("Jump", 1f);
+                    return;
+                }
+
+            }
+            GameObject w = Instantiate(wortelPrefab, CarrotGrid.Instance.carrotPoints[c, r].pos, default, GameEnvironment.Instance.knollenParent.transform);
+            WortelJumpingBehavior wjb = w.GetComponent<WortelJumpingBehavior>();
+
+            wjb.currentColumn = c;
+            wjb.currentRow = r;
+            wjb.Invoke("Jump", 1f);
+        }
+
     }
 
     public void SpawnBosui()
@@ -145,7 +215,7 @@ public class KnolSpawner : MonoBehaviour
                 }
                 else
                 {
-                    Instantiate(wortelPrefab, pos, default, GameEnvironment.Instance.knollenParent.transform);
+                    KnolSpawner.Instance.SpawnWortelOpnieuw(pos);
                 }
                 break;
             case KNOLTYPE.bosui:
