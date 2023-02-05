@@ -8,6 +8,7 @@ TagManager:
   - Wortel
   - Radijsje
   - Moestuin
+  - Obstacle
   layers:
   - Default
   - TransparentFX

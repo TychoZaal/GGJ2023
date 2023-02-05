@@ -8,24 +8,24 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float speed = 5, acceleration = 3, decceleration = 2, velPower = 1, rotationSpeed = 1.0f;
 
+    [SerializeField]
     private Rigidbody rb;
 
     private Vector2 movementInput;
 
+    [SerializeField]
     private Transform model;
+
     private Vector3 lastLookAtPosition;
 
     public enum State { MOVING, IDLE, STUNNED, WAITING };
     [SerializeField]
-    private State playerState = State.WAITING;
+    public State playerState = State.WAITING;
 
     private Vector3 waitPosition;
 
     private void Start()
     {
-        var detPlayer = GetComponent<DeterminePlayer>();
-        rb = detPlayer.player1.activeInHierarchy ? detPlayer.player1.GetComponent<Rigidbody>() : detPlayer.player2.GetComponent<Rigidbody>();
-        model = detPlayer.GetModel();
         waitPosition = PlayerManager._instance.GetSpawnPosition().position;
 
         Vector3 lookAtPosition = transform.position + Vector3.one;
